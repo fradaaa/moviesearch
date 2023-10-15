@@ -16,6 +16,10 @@
   }
 }
 
+html {
+  font-family: var(--font-inter);
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
