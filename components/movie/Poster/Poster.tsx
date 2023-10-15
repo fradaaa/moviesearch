@@ -9,7 +9,7 @@ const Poster = async () => {
   const src = getImageURL.getPoster(poster_path, "original");
 
   return (
-    <div className="relative rounded-sm border-8 border-sky-800">
+    <div className="relative basis-2/5 rounded-sm border-8 border-sky-800">
       <Image src={src} alt={`${title}'s poster`} width={500} height={750} />
       <ReleaseDate release_date={release_date} />
       <PlayTrailer />
