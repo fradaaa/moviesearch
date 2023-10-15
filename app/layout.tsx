@@ -20,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable}`}>
-      <body>{children}</body>
+      <body className="bg-sky-950">
+        <main className="mx-auto my-0 min-h-screen max-w-6xl p-4">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
