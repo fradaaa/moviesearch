@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)"],
+        montserrat: ["var(--montserrat)"],
       },
     },
   },
