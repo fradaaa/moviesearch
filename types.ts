@@ -28,6 +28,29 @@ type SpokenLanguage = {
   name: string;
 };
 
+type ItemCredit = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+  credit_id: string;
+};
+
+export type CastCredit = ItemCredit & {
+  cast_id: number;
+  character: string;
+  order: number;
+};
+
+type CrewCredit = ItemCredit & {
+  department: string;
+  job: string;
+};
+
 export type Movie = {
   adult: boolean;
   backdrop_path: string;
@@ -54,4 +77,8 @@ export type Movie = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  credits: {
+    cast: CastCredit[];
+    crew: CrewCredit[];
+  };
 };
