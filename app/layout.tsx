@@ -1,3 +1,4 @@
+import Header from "@/components/header/Header";
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
       <body className="bg-sky-950 text-white">
+        <Header />
         <main className="mx-auto my-0 min-h-screen max-w-6xl p-4">
           {children}
         </main>
