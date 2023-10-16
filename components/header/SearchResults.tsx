@@ -10,7 +10,7 @@ type SearchResultsProps = {
 
 const SearchResults = ({ isLoading, query, results }: SearchResultsProps) => {
   return (
-    <div className="absolute top-full z-10 mt-2 w-full rounded-md bg-black shadow-xl">
+    <div className="absolute top-full mt-2 w-full rounded-md bg-black shadow-xl">
       {isLoading && query ? (
         <div className="h-10 w-full p-2 text-center">Loading...</div>
       ) : (
