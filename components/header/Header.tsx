@@ -2,7 +2,7 @@ import HeaderSearch, { QuerySearchProvider } from "./HeaderSearch";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 flex h-24 w-full items-center justify-between border-b-2 border-gray-700 bg-sky-500 px-10 py-2">
+    <header className="sticky top-0 z-10 flex h-24 w-full items-center justify-between border-b-2 border-gray-700 bg-sky-500 px-10 py-2">
       <span className="w-24">
         <svg
           xmlns="http://www.w3.org/2000/svg"
