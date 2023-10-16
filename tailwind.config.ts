@@ -12,8 +12,12 @@ const config: Config = {
         sans: ["var(--font-inter)"],
         montserrat: ["var(--montserrat)"],
       },
+      width: {
+        rating: "3ch",
+      },
     },
   },
   plugins: [],
+  safelist: ["bg-red-600", "bg-gray-500", "bg-green-600"],
 };
 export default config;
