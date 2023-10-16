@@ -2,13 +2,20 @@
 
 import { useDebounce } from "@/hooks/useDebounce";
 import { useSearch } from "@/hooks/useSearch";
-import { ReactNode, useDeferredValue, useState } from "react";
+import {
+  ReactNode,
+  useDeferredValue,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import SearchResults from "./SearchResults";
 
 const queryClient = new QueryClient();
 
 const HeaderSearch = () => {
+  const node = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [hideResults, setHideResults] = useState(false);
   const deferredQuery = useDeferredValue(query);
@@ -16,8 +23,26 @@ const HeaderSearch = () => {
 
   const { isLoading, error, data } = useSearch(debouncedQuery);
 
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (node.current?.contains(e.target as Node)) return;
+
+    setHideResults(true);
+  };
+
+  useEffect(() => {
+    if (!hideResults) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [hideResults]);
+
   return (
-    <div className="relative">
+    <div ref={node} className="relative">
       <input
         className="w-80 rounded-md p-1 text-black"
         type="search"
@@ -26,7 +51,6 @@ const HeaderSearch = () => {
         placeholder="Movies, tv-series, people"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onBlur={() => setHideResults(true)}
         onFocus={() => setHideResults(false)}
       />
       {!hideResults && (
