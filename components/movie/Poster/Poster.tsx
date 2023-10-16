@@ -4,8 +4,12 @@ import Image from "next/image";
 import PlayTrailer from "./PlayTrailer";
 import ReleaseDate from "./ReleaseDate";
 
-const Poster = async () => {
-  const { title, poster_path, release_date } = await getMovie();
+type PosterProps = {
+  id: string;
+};
+
+const Poster = async ({ id }: PosterProps) => {
+  const { title, poster_path, release_date } = await getMovie(id);
   const src = getImageURL.getPoster(poster_path, "original");
 
   return (

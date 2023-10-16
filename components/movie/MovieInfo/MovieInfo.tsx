@@ -2,7 +2,11 @@ import { getMovie } from "@/api";
 import Rating from "./Rating";
 import Cast from "./Cast";
 
-const MovieInfo = async () => {
+type MovieInfoProps = {
+  id: string;
+};
+
+const MovieInfo = async ({ id }: MovieInfoProps) => {
   const {
     title,
     original_title,
@@ -11,7 +15,7 @@ const MovieInfo = async () => {
     vote_average,
     overview,
     credits: { cast },
-  } = await getMovie();
+  } = await getMovie(id);
 
   return (
     <div className="ml-8 basis-3/5">
