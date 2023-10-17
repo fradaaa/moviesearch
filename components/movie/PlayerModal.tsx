@@ -64,7 +64,7 @@ const PlayerModal = ({ videos, movieInfo }: PlayerModalProps) => {
         <div className="relative h-full overflow-hidden">
           <p className="p-4 font-bold">Watch more</p>
           <ul className="absolute inset-0 -right-5 top-14 overflow-y-auto p-4 pt-0">
-            {videos.map(({ id, name, key }) => (
+            {videos.map(({ id, name, key, type }) => (
               <li
                 key={id}
                 className="mt-4 flex cursor-pointer gap-2 overflow-hidden rounded-s p-1 transition-colors hover:bg-slate-500"
@@ -80,6 +80,7 @@ const PlayerModal = ({ videos, movieInfo }: PlayerModalProps) => {
                 </div>
                 <div className="basis-3/4">
                   <p>{name}</p>
+                  <p className="text-xs text-gray-300">{type}</p>
                 </div>
               </li>
             ))}

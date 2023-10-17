@@ -27,11 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
-      <body className="bg-sky-950 text-white">
+      <body className="bg-gray-950 text-white">
         <Header />
-        <main className="mx-auto my-0 min-h-screen max-w-6xl p-4">
-          {children}
-        </main>
+        <main className="mx-auto my-0 max-w-6xl p-4">{children}</main>
       </body>
     </html>
   );

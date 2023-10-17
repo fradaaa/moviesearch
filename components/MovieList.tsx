@@ -14,7 +14,7 @@ const MovieList = async ({ type }: MovieListProps) => {
 
   return (
     <div className="mt-10">
-      <h2 className="text-3xl capitalize">
+      <h2 className="text-3xl font-bold capitalize">
         {type === "top_rated" ? "Top Rated" : type}
       </h2>
       <ul className="maxw mt-4 grid grid-cols-2 justify-between gap-8 sm:grid-cols-3 lg:grid-cols-5">
@@ -39,7 +39,12 @@ const MovieList = async ({ type }: MovieListProps) => {
                 </div>
                 <div className="mt-2">
                   <h2 className="font-bold">
-                    <Link href={`/movie/${id}`}>{title}</Link>
+                    <Link
+                      href={`/movie/${id}`}
+                      className="text-gray-300 transition-colors hover:text-blue-700"
+                    >
+                      {title}
+                    </Link>
                   </h2>
                   <p className="font-montserrat">
                     {`${monthName} ${day}, ${year}`}
