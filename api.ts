@@ -13,7 +13,7 @@ const getData = async <T>(url: string) => {
 
 export const getMovie = async (movieId = "274") =>
   getData<Movie>(
-    `https://api.themoviedb.org/3/movie/${movieId}?append_to_response=credits`,
+    `https://api.themoviedb.org/3/movie/${movieId}?append_to_response=credits,videos`,
   );
 
 export const getMovieList = async (
