@@ -11,6 +11,7 @@ import {
 } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import SearchResults from "./SearchResults";
+import { LuSearch } from "react-icons/lu";
 
 const queryClient = new QueryClient();
 
@@ -43,21 +44,25 @@ const HeaderSearch = () => {
 
   return (
     <div ref={node} className="relative">
-      <input
-        className="w-80 rounded-md bg-gray-700 p-1 px-3 text-gray-200"
-        type="search"
-        name="search"
-        id="search"
-        placeholder="Movies, tv-series, people"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onFocus={() => setHideResults(false)}
-      />
+      <label htmlFor="search" className="relative">
+        <input
+          className="w-80 rounded-md border-2 border-transparent bg-gray-700 p-1 px-3 pr-10 text-gray-200 outline-none placeholder:italic focus:border-2 focus:border-blue-700"
+          type="search"
+          name="search"
+          id="search"
+          placeholder="Movies, tv-series, people"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => setHideResults(false)}
+        />
+        <LuSearch className="absolute right-2 top-2/4 h-6 w-6 -translate-y-2/4" />
+      </label>
       {!hideResults && (
         <SearchResults
           isLoading={isLoading}
           query={deferredQuery}
           results={data}
+          hideResults={() => setHideResults(true)}
         />
       )}
     </div>

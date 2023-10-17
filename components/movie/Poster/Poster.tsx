@@ -33,7 +33,13 @@ const Poster = async ({ id }: PosterProps) => {
 
   return (
     <div className="relative basis-2/5 rounded-sm border-8 border-sky-800">
-      <Image src={src} alt={`${title}'s poster`} width={500} height={750} />
+      <Image
+        src={src}
+        alt={`${title}'s poster`}
+        width={500}
+        height={750}
+        priority
+      />
       <ReleaseDate release_date={release_date} />
       <PlayTrailer videos={results} movieInfo={movieInfo} />
     </div>

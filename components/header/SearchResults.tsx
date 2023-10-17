@@ -7,11 +7,20 @@ type SearchResultsProps = {
   isLoading: boolean;
   query: string;
   results?: SearchData[];
+  hideResults: () => void;
 };
 
-const SearchResults = ({ isLoading, query, results }: SearchResultsProps) => {
+const SearchResults = ({
+  isLoading,
+  query,
+  results,
+  hideResults,
+}: SearchResultsProps) => {
   return (
-    <div className="absolute top-full mt-2 w-full rounded-md bg-gray-800 shadow-xl">
+    <div
+      className="absolute top-full mt-2 w-full rounded-md bg-gray-800 shadow-xl"
+      onClick={hideResults}
+    >
       {isLoading && query ? (
         <div className="flex h-32 items-center justify-center">
           <svg
