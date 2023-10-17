@@ -51,6 +51,29 @@ type CrewCredit = ItemCredit & {
   job: string;
 };
 
+export type VideoResult = {
+  iso_639_1: string;
+  iso_3166_1: string;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  type: "Clip" | "Featurette" | "Teaser" | "Trailer";
+  official: boolean;
+  published_at: Date;
+  id: string;
+};
+
+export type MovieInfo = {
+  title: string;
+  original_title: string;
+  release_date: Date;
+  vote_average: number;
+  vote_count: number;
+  poster_path: string;
+  genres: MovieGenre[];
+};
+
 export type Movie = {
   adult: boolean;
   backdrop_path: string;
@@ -80,6 +103,9 @@ export type Movie = {
   credits: {
     cast: CastCredit[];
     crew: CrewCredit[];
+  };
+  videos: {
+    results: VideoResult[];
   };
 };
 
