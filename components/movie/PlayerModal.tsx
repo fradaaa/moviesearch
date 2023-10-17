@@ -40,7 +40,7 @@ const PlayerModal = ({ videos, movieInfo }: PlayerModalProps) => {
           id="video"
         />
       </div>
-      <div className="flex basis-4/12 flex-col">
+      <div className="flex shrink-0 basis-4/12 flex-col">
         <div className="flex border-b-2 border-b-slate-600 p-4 pb-6">
           <Image
             className="rounded-md"
@@ -70,7 +70,7 @@ const PlayerModal = ({ videos, movieInfo }: PlayerModalProps) => {
                 className="mt-4 flex cursor-pointer gap-2 overflow-hidden rounded-s p-1 transition-colors hover:bg-slate-500"
                 onClick={() => setCurVideo(key)}
               >
-                <div className="basis-1/4 overflow-hidden rounded-s">
+                <div className="shrink-0 basis-1/4 overflow-hidden rounded-s">
                   <Image
                     src={`https://img.youtube.com/vi/${key}/sddefault.jpg`}
                     alt={name}
