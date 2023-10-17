@@ -170,3 +170,20 @@ export type SearchData =
       type: "person";
       items: PersonSearchResult[];
     };
+
+export type MovieImageType = {
+  aspect_ratio: number;
+  height: number;
+  iso_639_1: string;
+  file_path: string;
+  vote_average: number;
+  vote_count: number;
+  width: number;
+};
+
+export type MovieImages = {
+  id: number;
+  backdrops: MovieImageType[];
+  logos: MovieImageType[];
+  posters: MovieImageType[];
+};

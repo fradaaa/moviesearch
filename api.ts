@@ -1,4 +1,4 @@
-import { Movie, MovieSearchResult } from "./types";
+import { Movie, MovieImages, MovieSearchResult } from "./types";
 
 const getData = async <T>(url: string) => {
   const res = await fetch(url, {
@@ -24,4 +24,12 @@ export const getMovieList = async (
   );
 
   return results;
+};
+
+export const getMovieImages = async (id: string, language = "") => {
+  const data = await getData<MovieImages>(
+    `https://api.themoviedb.org/3/movie/${id}/images?include_image_language=en,null`,
+  );
+
+  return data;
 };
