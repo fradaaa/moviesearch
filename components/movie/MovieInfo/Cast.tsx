@@ -12,7 +12,7 @@ const Cast = ({ cast }: CastProps) => {
   return (
     <div className="mt-6">
       <h2 className="font-bold uppercase">The Cast</h2>
-      <div className="flex gap-2">
+      <div className="mt-2 flex gap-2">
         {cast
           .filter(({ order }) => order < showCount)
           .map((item, i) => (

@@ -46,7 +46,7 @@ export type CastCredit = ItemCredit & {
   order: number;
 };
 
-type CrewCredit = ItemCredit & {
+export type CrewCredit = ItemCredit & {
   department: string;
   job: string;
 };
