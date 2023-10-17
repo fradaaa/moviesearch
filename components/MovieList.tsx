@@ -17,12 +17,12 @@ const MovieList = async ({ type }: MovieListProps) => {
       <h2 className="text-3xl capitalize">
         {type === "top_rated" ? "Top Rated" : type}
       </h2>
-      <ul className="mt-4 grid grid-cols-5 justify-between gap-8">
+      <ul className="maxw mt-4 grid grid-cols-2 justify-between gap-8 sm:grid-cols-3 lg:grid-cols-5">
         {movies.map(
           ({ id, poster_path, title, release_date, vote_average }) => {
             const src = getImageURL.getPoster(poster_path, "w342");
             const { year, monthName, day } = formatDate(release_date);
-            const bgRatingColor = getRatingColor(vote_average);
+            const [bgRatingColor] = getRatingColor(vote_average);
 
             return (
               <li key={id}>
@@ -31,7 +31,7 @@ const MovieList = async ({ type }: MovieListProps) => {
                     <Image src={src} alt={title} width={200} height={300} />
                     <span className="sr-only">{title}</span>
                     <span
-                      className={`w-rating absolute right-3 top-3 block p-1 text-center font-montserrat ${bgRatingColor}`}
+                      className={`absolute right-3 top-3 block w-rating p-1 text-center font-montserrat ${bgRatingColor}`}
                     >
                       {vote_average}
                     </span>
