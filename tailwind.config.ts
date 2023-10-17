@@ -25,6 +25,8 @@ const config: Config = {
     "text-red-600",
     "text-gray-500",
     "text-green-600",
+    "border-blue-300/50",
+    "border-blue-700",
   ],
 };
 export default config;
