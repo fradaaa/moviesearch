@@ -1,7 +1,6 @@
 import { CastCredit } from "@/types";
 import { getImageURL } from "@/utils/getImageURL";
 import Image from "next/image";
-import { CgProfile } from "react-icons/cg";
 
 type MovieCastProps = {
   cast: CastCredit[];
