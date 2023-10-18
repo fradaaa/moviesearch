@@ -4,7 +4,7 @@ import { getImageURL } from "@/utils/getImageURL";
 import { getRatingColor } from "@/utils/getRatingColor";
 import Image from "next/image";
 import { useState } from "react";
-import YouTube from "react-youtube";
+import YoutubePlayer from "./YoutubePlayer";
 
 type PlayerModalProps = {
   videos: VideoResult[];
@@ -32,13 +32,7 @@ const PlayerModal = ({ videos, movieInfo }: PlayerModalProps) => {
   return (
     <div className="flex h-full text-white">
       <div className="flex basis-8/12 items-center">
-        <YouTube
-          className="h-full w-full"
-          iframeClassName="h-full w-full"
-          videoId={curVideo || trailer?.key}
-          onReady={() => !curVideo && setCurVideo(trailer?.key!)}
-          id="video"
-        />
+        <YoutubePlayer videoId={curVideo || trailer?.key} />
       </div>
       <div className="flex shrink-0 basis-4/12 flex-col">
         <div className="flex border-b-2 border-b-slate-600 p-4 pb-6">
