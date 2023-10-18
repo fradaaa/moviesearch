@@ -33,7 +33,7 @@ const MovieInfo = async ({ id }: MovieInfoProps) => {
           </div>
         ))}
       </div>
-      <Cast cast={cast} />
+      <Cast cast={cast} id={id} />
       <div className="mt-6">
         <h3 className="font-bold uppercase">Synopsis</h3>
         <p>{overview}</p>
