@@ -109,6 +109,23 @@ export type Movie = {
   };
 };
 
+export type Person = {
+  adult: boolean;
+  also_known_as: string[];
+  biography: string;
+  birthday: Date | null;
+  deathday: Date | null;
+  gender: 0 | 1 | 2 | 3;
+  homepage: string | null;
+  id: number;
+  imdb_id: string;
+  known_for_department: "string";
+  name: string;
+  place_of_birth: string;
+  popularity: number;
+  profile_path: string;
+};
+
 export type MovieSearchResult = {
   adult: boolean;
   backdrop_path: string;

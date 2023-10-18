@@ -1,4 +1,4 @@
-import { Movie, MovieImages, MovieSearchResult } from "./types";
+import { Movie, MovieImages, MovieSearchResult, Person } from "./types";
 
 const getData = async <T>(url: string) => {
   const res = await fetch(url, {
@@ -32,4 +32,20 @@ export const getMovieImages = async (id: string, language = "") => {
   );
 
   return data;
+};
+
+export const getPerson = async (id: string) => {
+  const data = await getData<Person>(
+    `https://api.themoviedb.org/3/person/1038?language=en-US`,
+  );
+
+  return data;
+};
+
+export const getPersonMovieCredits = async (id: string) => {
+  const data = await getData<{ cast: MovieSearchResult[] }>(
+    `https://api.themoviedb.org/3/person/1038/movie_credits?language=en-US`,
+  );
+
+  return data.cast.filter(({ vote_count }) => vote_count >= 2000);
 };
