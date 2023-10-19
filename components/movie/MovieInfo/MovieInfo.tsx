@@ -2,6 +2,7 @@ import { getMovie } from "@/api";
 import Rating from "./Rating";
 import Cast from "./Cast";
 import { CrewCredit } from "@/types";
+import Link from "next/link";
 
 type MovieInfoProps = {
   id: string;
@@ -28,7 +29,12 @@ const MovieInfo = async ({ id }: MovieInfoProps) => {
       <div className="mt-6 flex gap-8">
         {people.map(({ name, job, id }) => (
           <div key={id}>
-            <p className="font-bold">{name}</p>
+            <Link
+              href={`/person/${id}`}
+              className="transition-colors hover:text-blue-700"
+            >
+              <p className="font-bold">{name}</p>
+            </Link>
             <p className="text-sm text-gray-400">{job}</p>
           </div>
         ))}

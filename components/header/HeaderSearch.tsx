@@ -46,7 +46,7 @@ const HeaderSearch = () => {
     <div ref={node} className="relative">
       <label htmlFor="search" className="relative">
         <input
-          className="w-80 rounded-md border-2 border-transparent bg-gray-700 p-1 px-3 pr-10 text-gray-200 outline-none placeholder:italic focus:border-2 focus:border-blue-700"
+          className="w-80 rounded-md border-2 border-transparent bg-gray-700 p-1 px-3 pr-10 text-gray-200 outline-none transition-colors placeholder:italic focus:border-2 focus:border-blue-700"
           type="search"
           name="search"
           id="search"

@@ -39,7 +39,7 @@ type CastItemProps = {
 };
 
 const CastItem = ({
-  item: { name, profile_path },
+  item: { name, profile_path, id },
   total,
   movieId,
   isLast,
@@ -48,7 +48,13 @@ const CastItem = ({
 
   return (
     <div className="relative h-16 w-16 overflow-hidden rounded-full drop-shadow-md">
-      <Image src={src} alt={name} width={100} height={100} />
+      <Link
+        href={`/person/${id}`}
+        className="transition-opacity hover:opacity-70"
+        title={name}
+      >
+        <Image src={src} alt={name} width={100} height={100} />
+      </Link>
       {isLast && (
         <div className="absolute top-0 h-full w-full cursor-pointer bg-gray-600/75 text-center transition-colors hover:bg-gray-600/50">
           <Link
