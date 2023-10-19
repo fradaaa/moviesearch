@@ -143,21 +143,36 @@ export type MovieSearchResult = {
   vote_count: number;
 };
 
-export type MovieCastResult = MovieSearchResult & {
+type CastInfo = {
   character: string;
   credit_id: string;
   order: number;
   media_type: string;
-  first_air_date: Date;
-  name: string;
-  episode_count?: number;
 };
 
-export type MovieCrewResult = MovieSearchResult & {
+type CrewInfo = {
   credit_id: string;
   department: string;
   job: string;
   media_type: string;
+};
+
+export type MovieCastResult = MovieSearchResult & CastInfo;
+
+export type TVCastResult = TvSearchResult & CastInfo;
+
+export type MovieCrewResult = MovieSearchResult & CrewInfo;
+
+export type TVCrewResult = TvSearchResult & CrewInfo;
+
+export type Credit =
+  | MovieCastResult
+  | TVCastResult
+  | MovieCrewResult
+  | TVCrewResult;
+
+export type PersonCredits = {
+  [k: string]: Credit[];
 };
 
 export type TvSearchResult = {
@@ -175,6 +190,7 @@ export type TvSearchResult = {
   name: string;
   vote_average: number;
   vote_count: number;
+  episode_count: number;
 };
 
 type KnowFor =
