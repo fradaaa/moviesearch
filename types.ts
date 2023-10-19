@@ -143,6 +143,23 @@ export type MovieSearchResult = {
   vote_count: number;
 };
 
+export type MovieCastResult = MovieSearchResult & {
+  character: string;
+  credit_id: string;
+  order: number;
+  media_type: string;
+  first_air_date: Date;
+  name: string;
+  episode_count?: number;
+};
+
+export type MovieCrewResult = MovieSearchResult & {
+  credit_id: string;
+  department: string;
+  job: string;
+  media_type: string;
+};
+
 export type TvSearchResult = {
   adult: boolean;
   backdrop_path: string;
