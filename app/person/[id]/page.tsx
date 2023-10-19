@@ -1,9 +1,9 @@
 import { getPerson } from "@/api";
 import PersonBiography from "@/components/person/PersonBiography";
+import PersonCredits from "@/components/person/PersonCredits";
 import PersonalInfo from "@/components/person/PersonalInfo";
 import { getImageURL } from "@/utils/getImageURL";
 import { Metadata, ResolvingMetadata } from "next";
-import Image from "next/image";
 
 type Props = {
   params: { id: string };
@@ -35,6 +35,7 @@ export default async function PersonPage({ params }: Props) {
       <PersonalInfo id={id} />
       <div className="max-w-[860px] basis-4/5">
         <PersonBiography id={id} />
+        <PersonCredits id={id} />
       </div>
     </div>
   );
