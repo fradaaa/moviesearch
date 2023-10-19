@@ -2,6 +2,7 @@ import { MovieSearchResult, PersonSearchResult, SearchData } from "@/types";
 import { getImageURL } from "@/utils/getImageURL";
 import Image from "next/image";
 import Link from "next/link";
+import Circle from "./Circle";
 
 type SearchResultsProps = {
   isLoading: boolean;
@@ -16,6 +17,11 @@ const SearchResults = ({
   results,
   hideResults,
 }: SearchResultsProps) => {
+  const searchResultsCount = results?.reduce<number>(
+    (a, v) => a + v.items.length,
+    0,
+  );
+
   return (
     <div
       className="absolute top-full mt-2 w-full rounded-md bg-gray-800 shadow-xl"
@@ -23,32 +29,12 @@ const SearchResults = ({
     >
       {isLoading && query ? (
         <div className="flex h-32 items-center justify-center">
-          <svg
-            className="-ml-1 mr-3 h-10 w-10 animate-spin text-blue-700"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            ></circle>
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
-          </svg>
+          <Circle />
         </div>
-      ) : (
-        results &&
-        results.length > 0 && (
-          <div className="p-2">
-            {results.map((result) => (
+      ) : results && searchResultsCount ? (
+        <div className="p-2">
+          {results.map((result) =>
+            result.items.length > 1 ? (
               <div key={result.type} className="mt-4">
                 <p className="pb-2 pl-2 text-sm capitalize">{`${result.type}s`}</p>
                 <ul className="flex flex-col gap-2">
@@ -57,9 +43,11 @@ const SearchResults = ({
                   ))}
                 </ul>
               </div>
-            ))}
-          </div>
-        )
+            ) : null,
+          )}
+        </div>
+      ) : (
+        <p className="p-4 text-sm">Nothing has been found...</p>
       )}
     </div>
   );
@@ -96,8 +84,17 @@ const SearchResultItem = ({ item }: SearchResultItemProps) => {
           </div>
         </Link>
       ) : (
-        <Link href="/">
-          <Image src={src} alt={item.name} width={48} height={72} />
+        <Link
+          href={`/person/${item.id}`}
+          className="flex items-center gap-4 rounded-md p-2 transition-colors hover:bg-gray-600"
+        >
+          <Image
+            src={src}
+            alt={item.name}
+            width={48}
+            height={72}
+            className="rounded-sm"
+          />
           <h4>{item.name}</h4>
         </Link>
       )}
