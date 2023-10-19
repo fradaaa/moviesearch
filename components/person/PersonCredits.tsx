@@ -1,76 +1,52 @@
-import { getPersonCombinedCredits } from "@/api";
-import { formatDate } from "@/utils/formatDate";
-import { getRatingColor } from "@/utils/getRatingColor";
-import Link from "next/link";
+"use client";
+
+import { PersonCredits as PersonCreditsType } from "@/types";
+import { useState } from "react";
+import PersonCreditItem from "./PersonCreditItem";
 
 type PersonCreditsProps = {
   id: string;
+  known_for_department: string;
+  credits: PersonCreditsType;
 };
 
-const PersonCredits = async ({ id }: PersonCreditsProps) => {
-  const data = await getPersonCombinedCredits(id);
+const PersonCredits = ({
+  known_for_department,
+  credits,
+}: PersonCreditsProps) => {
+  const [curDepartment, setCurDepartment] =
+    useState<string>(known_for_department);
+  const depsInfo = Object.keys(credits).map(
+    (dep) => [dep, credits[dep].length] as const,
+  );
+  const borderColor = (section: string) => {
+    return section === curDepartment ? "border-blue-700" : "border-blue-300/50";
+  };
 
   return (
     <div className="mt-10">
-      <ul>
-        {data.Acting.map(
-          ({
-            id,
-            title,
-            vote_average,
-            vote_count,
-            release_date,
-            character,
-            media_type,
-            name,
-            credit_id,
-            episode_count,
-          }) => {
-            const { year } = formatDate(release_date);
-            const [_, rColor] = getRatingColor(vote_average);
-
-            return (
-              <li key={credit_id} className="flex p-2">
-                <div>
-                  <Link
-                    href={`/${media_type}/${id}`}
-                    className="text-lg transition-colors hover:text-blue-700"
-                  >
-                    <p className="font-bold">
-                      {isMovie(media_type) ? title : name},{" "}
-                      <span className="font-montserrat text-base font-normal ">
-                        {year}
-                      </span>
-                    </p>
-                  </Link>
-                  <p className="text-gray-200">
-                    {character}
-                    <span className="text-sm text-gray-400">
-                      {episode_count && `, ${episode_count} episode(s)`}
-                    </span>
-                  </p>
-                </div>
-                <div className="ml-auto flex flex-col items-end justify-center font-montserrat">
-                  {vote_count > 0 ? (
-                    <>
-                      <span className={`block text-lg font-bold ${rColor}`}>
-                        {vote_average.toFixed(1)}
-                      </span>
-                      <span className="block text-sm">{vote_count}</span>
-                    </>
-                  ) : (
-                    <span>—</span>
-                  )}
-                </div>
-              </li>
-            );
-          },
-        )}
+      <div className="flex ">
+        {depsInfo.map(([dep, qty]) => (
+          <button
+            key={dep}
+            type="button"
+            className={`flex flex-col gap-1 border-b-2 p-4 transition-colors hover:text-blue-700 ${borderColor(
+              dep,
+            )}`}
+            onClick={() => setCurDepartment(dep)}
+          >
+            <span className="text-lg font-bold">{dep}</span>
+            <span className="text-sm ">{qty} movies</span>
+          </button>
+        ))}
+      </div>
+      <ul className="mt-4">
+        {credits[curDepartment].map((credit) => (
+          <PersonCreditItem key={credit.credit_id} item={credit} />
+        ))}
       </ul>
     </div>
   );
 };
-
-const isMovie = (type: string) => type === "movie";
 
 export default PersonCredits;
