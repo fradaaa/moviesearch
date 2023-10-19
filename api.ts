@@ -5,7 +5,10 @@ import {
   MovieImages,
   MovieSearchResult,
   Person,
+  TVCastResult,
+  TVCrewResult,
 } from "./types";
+import { formatCredits } from "./utils/formatCredits";
 
 const getData = async <T>(url: string) => {
   const res = await fetch(url, {
@@ -57,39 +60,13 @@ export const getPersonMovieCredits = async (id: string) => {
   return data.cast.filter(({ vote_count }) => vote_count >= 2000);
 };
 
-type PersonCredits = {
-  ["Acting"]: MovieCastResult[];
-} & {
-  [k: string]: MovieCrewResult[];
-};
-
 export const getPersonCombinedCredits = async (id: string) => {
   const { cast, crew } = await getData<{
-    cast: MovieCastResult[];
-    crew: MovieCrewResult[];
+    cast: (MovieCastResult | TVCastResult)[];
+    crew: (MovieCrewResult | TVCrewResult)[];
   }>(
     `https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`,
   );
 
-  const data: PersonCredits = { Acting: [] };
-
-  cast
-    .map((credit) => ({
-      ...credit,
-      release_date: credit.first_air_date || credit.release_date,
-    }))
-    .sort((a, b) =>
-      (b.release_date as unknown as string).localeCompare(
-        a.release_date as unknown as string,
-      ),
-    )
-    .forEach((credit) => data["Acting"].push(credit));
-
-  crew.forEach((credit) => {
-    if (!data[credit.department]) data[credit.department] = [];
-
-    data[credit.department].push(credit);
-  });
-
-  return data;
+  return formatCredits(cast, crew);
 };
