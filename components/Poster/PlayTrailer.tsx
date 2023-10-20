@@ -4,7 +4,7 @@ import { MovieInfo, VideoResult } from "@/types";
 import { useEffect, useState } from "react";
 import { LuPlay } from "react-icons/lu";
 import ReactModal from "react-modal";
-import PlayerModal from "../PlayerModal";
+import PlayerModal from "../movie/PlayerModal";
 
 type PlayerModalProps = {
   videos: VideoResult[];

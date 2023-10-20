@@ -1,6 +1,6 @@
 import { getMovie, getMovieImages } from "@/api";
 import MovieDetails from "@/components/movie/MovieDetails/MovieDetails";
-import Poster from "@/components/movie/Poster/Poster";
+import Poster from "@/components/Poster/Poster";
 import TitleInfo from "@/components/TitleInfo/TitleInfo";
 import { formatDate } from "@/utils/formatDate";
 import { Metadata, ResolvingMetadata } from "next";
