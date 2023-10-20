@@ -1,5 +1,6 @@
-import { getPerson, getPersonMovieCredits } from "@/api";
+import { getPerson, getPersonCredits } from "@/api";
 import { getImageURL } from "@/utils/getImageURL";
+import { isMovieSearchResult } from "@/utils/typeHelpers";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +10,7 @@ type PersonBiographyProps = {
 
 const PersonBiography = async ({ id }: PersonBiographyProps) => {
   const { name, biography } = await getPerson(id);
-  const knownForMovies = await getPersonMovieCredits(id);
+  const knownForMovies = await getPersonCredits(id);
 
   return (
     <section className="w-full">
@@ -40,8 +41,12 @@ const PersonBiography = async ({ id }: PersonBiographyProps) => {
       <div className="mt-8 w-full">
         <h3 className="text-md mb-2 font-bold">Known For</h3>
         <ul className="flex w-auto flex-nowrap gap-4 overflow-x-scroll pb-6">
-          {knownForMovies.map(({ id, poster_path, title }) => {
+          {knownForMovies.map((knownMovie) => {
+            const { id, poster_path } = knownMovie;
             const src = getImageURL.getPoster(poster_path, "w185");
+            const title = isMovieSearchResult(knownMovie)
+              ? knownMovie.title
+              : knownMovie.name;
 
             return (
               <li key={id}>

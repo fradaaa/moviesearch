@@ -10,6 +10,7 @@ import {
   TVCrewResult,
   TVSeries,
   TitleImages,
+  TvSearchResult,
 } from "./types";
 import { formatCredits } from "./utils/formatCredits";
 
@@ -24,13 +25,16 @@ const getData = async <T>(url: string) => {
   return data;
 };
 
-export const getMovie = async (movieId = "274") => {
+export const getMovie = async (movieId: string, stripCast?: boolean) => {
   const data = await getData<Movie>(
     `https://api.themoviedb.org/3/movie/${movieId}?append_to_response=credits,videos`,
   );
 
   data.credits.castLength = data.credits.cast.length;
-  data.credits.cast = data.credits.cast.slice(0, 20);
+
+  if (stripCast) {
+    data.credits.cast = data.credits.cast.slice(0, 20);
+  }
 
   return data;
 };
@@ -67,6 +71,18 @@ export const getPersonMovieCredits = async (id: string) => {
   );
 
   return data.cast.filter(({ vote_count }) => vote_count >= 2000);
+};
+
+export const getPersonCredits = async (id: string) => {
+  const data = await getData<{ cast: (MovieSearchResult | TvSearchResult)[] }>(
+    `https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`,
+  );
+
+  return data.cast
+    .filter(
+      ({ vote_count, vote_average }) => vote_count >= 2000 && vote_average >= 7,
+    )
+    .sort((a, b) => b.vote_average - a.vote_average);
 };
 
 export const getPersonCombinedCredits = async (id: string) => {

@@ -19,7 +19,7 @@ const TitleImages = ({ images }: TitleImagesProps) => {
       <div className="flex gap-6">
         {["Backdrops", "Posters"].map((text, i) => (
           <button
-            key={i}
+            key={text}
             type="button"
             className="rounded-md bg-blue-700 p-4 font-bold transition-colors hover:bg-blue-500"
             onClick={() => setImagesType(text.toLowerCase() as ImagesType)}

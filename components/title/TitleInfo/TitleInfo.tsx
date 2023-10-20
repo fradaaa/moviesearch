@@ -34,7 +34,7 @@ const TitleInfo = ({ id, item }: TitleInfoProps) => {
         {people.map(
           (person) =>
             person && (
-              <div key={person.id}>
+              <div key={person.credit_id}>
                 <Link
                   href={`/person/${person.id}`}
                   className="transition-colors hover:text-blue-700"

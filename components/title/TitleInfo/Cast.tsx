@@ -11,16 +11,15 @@ type CastProps = {
 
 const Cast = ({ cast, id, castLength }: CastProps) => {
   const showCount = 7;
-
-  console.log(castLength);
+  const strippedCast = cast.slice(0, showCount);
 
   return (
     <div className="mt-6">
       <h2 className="font-bold uppercase">The Cast</h2>
       <div className="mt-2 flex gap-2">
-        {[...cast.slice(0, 7)].map((item, i) => (
+        {strippedCast.map((item, i) => (
           <CastItem
-            key={item.id}
+            key={item.cast_id}
             item={item}
             total={castLength}
             isLast={showCount - 1 === i}
