@@ -27,12 +27,26 @@ const PersonCreditItem = ({ item }: PersonCreditItemProps) => {
             </span>
           </p>
         </Link>
-        <p className="text-gray-200">
-          {isCrew(item) ? item.job : item.character}
-          <span className="text-sm text-gray-400">
-            {isTv(item) && `, ${item.episode_count} episode(s)`}
-          </span>
-        </p>
+        <div className="pl-2">
+          {isTv(item) ? (
+            isCrew(item) ? (
+              <p className="text-gray-200">{item.job}</p>
+            ) : (
+              item.roles.map((item) => (
+                <p key={item.credit_id} className="mt-1 text-gray-200">
+                  {item.character}
+                  <span className="text-sm text-gray-400">
+                    , {item.episode_count} episode(s)
+                  </span>
+                </p>
+              ))
+            )
+          ) : (
+            <p className="text-gray-200">
+              {isCrew(item) ? item.job : item.character}
+            </p>
+          )}
+        </div>
       </div>
       <div className="ml-auto flex flex-col items-end justify-center font-montserrat">
         {vote_count > 0 ? (

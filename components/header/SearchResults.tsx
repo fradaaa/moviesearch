@@ -47,7 +47,7 @@ const SearchResults = ({
           )}
         </div>
       ) : (
-        <p className="p-4 text-sm">Nothing has been found...</p>
+        query && <p className="p-4 text-sm">Nothing has been found...</p>
       )}
     </div>
   );

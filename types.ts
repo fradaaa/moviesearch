@@ -244,9 +244,18 @@ type CrewInfo = {
   media_type: string;
 };
 
+type TVCastRole = {
+  credit_id: string;
+  character: string;
+  episode_count: number;
+};
+
 export type MovieCastResult = MovieSearchResult & CastInfo;
 
-export type TVCastResult = TvSearchResult & CastInfo;
+export type TVCastResult = TvSearchResult &
+  CastInfo & {
+    roles: TVCastRole[];
+  };
 
 export type MovieCrewResult = MovieSearchResult & CrewInfo;
 
