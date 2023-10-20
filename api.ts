@@ -74,7 +74,7 @@ export const getPersonMovieCredits = async (id: string) => {
 };
 
 export const getPersonCredits = async (id: string) => {
-  const data = await getData<{ cast: (MovieSearchResult | TvSearchResult)[] }>(
+  const data = await getData<{ cast: (MovieCastResult | TVCastResult)[] }>(
     `https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`,
   );
 
@@ -91,7 +91,7 @@ export const getPersonCredits = async (id: string) => {
       return credit;
     })
     .filter(
-      (credit): credit is MovieSearchResult | TvSearchResult => credit !== null,
+      (credit): credit is MovieCastResult | TVCastResult => credit !== null,
     )
     .sort((a, b) => b.vote_average - a.vote_average);
 };

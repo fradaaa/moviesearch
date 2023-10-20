@@ -42,7 +42,7 @@ const PersonBiography = async ({ id }: PersonBiographyProps) => {
         <h3 className="text-md mb-2 font-bold">Known For</h3>
         <ul className="flex w-auto flex-nowrap gap-4 overflow-x-scroll pb-6">
           {knownForMovies.map((knownMovie) => {
-            const { id, poster_path } = knownMovie;
+            const { id, poster_path, media_type } = knownMovie;
             const src = getImageURL.getPoster(poster_path, "w185");
             const title = isMovieSearchResult(knownMovie)
               ? knownMovie.title
@@ -50,7 +50,7 @@ const PersonBiography = async ({ id }: PersonBiographyProps) => {
 
             return (
               <li key={id}>
-                <Link href={`/movie/${id}`} className="block w-[130px]">
+                <Link href={`/${media_type}/${id}`} className="block w-[130px]">
                   <Image
                     src={src}
                     alt={title}
@@ -60,7 +60,10 @@ const PersonBiography = async ({ id }: PersonBiographyProps) => {
                   />
                 </Link>
                 <p className="text-center text-sm transition-colors hover:text-blue-700">
-                  <Link href={`/movie/${id}`} className="inline-block w-full">
+                  <Link
+                    href={`/${media_type}/${id}`}
+                    className="inline-block w-full"
+                  >
                     {title}
                   </Link>
                 </p>
