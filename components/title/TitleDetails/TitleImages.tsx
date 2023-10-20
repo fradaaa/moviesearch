@@ -31,7 +31,7 @@ const TitleImages = ({ images }: TitleImagesProps) => {
       <div className="mt-6 grid grid-cols-5 gap-4">
         {images[imagesType].map(({ file_path, width, height }, i) => (
           <Image
-            key={file_path}
+            key={file_path + i}
             className="h-full rounded-md"
             src={getImageURL.getBackdrop(file_path, "w780")}
             alt="Image"
