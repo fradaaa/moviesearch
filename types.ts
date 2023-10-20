@@ -5,7 +5,7 @@ type MovieCollection = {
   backdrop_path: string;
 };
 
-type MovieGenre = {
+type Genre = {
   id: number;
   name: string;
 };
@@ -71,7 +71,7 @@ export type MovieInfo = {
   vote_average: number;
   vote_count: number;
   poster_path: string;
-  genres: MovieGenre[];
+  genres: Genre[];
 };
 
 export type Movie = {
@@ -79,7 +79,7 @@ export type Movie = {
   backdrop_path: string;
   belongs_to_collection: MovieCollection;
   budget: number;
-  genres: MovieGenre[];
+  genres: Genre[];
   homepage: string;
   id: number;
   imdb_id: string;
@@ -141,6 +141,83 @@ export type MovieSearchResult = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+};
+
+type CreatedByItem = {
+  id: number;
+  credit_id: string;
+  name: string;
+  gender: 0 | 1 | 2 | 3;
+  profile_path: string;
+};
+
+type TVEpisode = {
+  id: number;
+  name: string;
+  overview: string;
+  vote_average: number;
+  vote_count: number;
+  air_date: Date;
+  episode_number: number;
+  episode_type: string;
+  production_code: string;
+  runtime: any; // change later
+  season_number: number;
+  show_id: number;
+  still_path: string;
+};
+
+type TVSeason = {
+  air_date: Date;
+  episode_count: number;
+  id: number;
+  name: string;
+  overview: string;
+  poster_path: string;
+  season_number: number;
+  vote_average: number;
+};
+
+export type TVSeries = {
+  adult: boolean;
+  backdrop_path: string;
+  created_by: CreatedByItem[];
+  episode_run_time: any[]; // change later
+  first_air_date: Date;
+  genres: Genre[];
+  homepage: string;
+  id: number;
+  in_production: boolean;
+  languages: string[];
+  last_air_date: Date;
+  last_episode_to_air: TVEpisode;
+  name: string;
+  next_episode_to_air: any; //change later
+  networks: ProductionCompany[];
+  number_of_episodes: number;
+  number_of_seasons: number;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  production_companies: ProductionCompany[];
+  production_countries: ProductionCountry[];
+  seasons: TVSeason[];
+  spoken_languages: SpokenLanguage[];
+  status: string;
+  tagline: string;
+  type: string;
+  vote_average: number;
+  vote_count: number;
+  credits: {
+    cast: CastCredit[];
+    crew: CrewCredit[];
+  };
+  videos: {
+    results: VideoResult[];
+  };
 };
 
 type CastInfo = {
