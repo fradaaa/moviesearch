@@ -28,15 +28,17 @@ export async function generateMetadata(
 export default async function MoviePage({ params }: Props) {
   const { id } = params;
 
+  const movie = await getMovie(id);
+  const images = await getMovieImages(id);
+
   const {
     credits: { cast },
-  } = await getMovie(id);
-  const images = await getMovieImages(id);
+  } = movie;
 
   return (
     <>
       <div className="flex">
-        <Poster id={id} />
+        <Poster item={movie} />
         <MovieInfo id={id} />
       </div>
       <MovieDetails images={images} cast={cast} />
