@@ -7,6 +7,7 @@ import {
   Person,
   TVCastResult,
   TVCrewResult,
+  TVSeries,
 } from "./types";
 import { formatCredits } from "./utils/formatCredits";
 
@@ -69,4 +70,12 @@ export const getPersonCombinedCredits = async (id: string) => {
   );
 
   return formatCredits(cast, crew);
+};
+
+export const getTV = async (id: string) => {
+  const data = await getData<TVSeries>(
+    `https://api.themoviedb.org/3/tv/${id}?language=en-US&append_to_response=credits,videos`,
+  );
+
+  return data;
 };
