@@ -52,14 +52,15 @@ const PersonalInfo = async ({ id }: PersonalInfoProps) => {
           </p>
           <p>
             <span className="mt-2 block font-bold">Birthday</span>
-            {birthDate &&
-              `${birthDate.day} ${birthDate.monthName}, ${birthDate.year} • ${
-                new Date().getFullYear() - 1 - birthDate.year
-              } years old`}
+            {birthDate
+              ? `${birthDate.day} ${birthDate.monthName}, ${birthDate.year} • ${
+                  new Date().getFullYear() - 1 - birthDate.year
+                } years old`
+              : "—"}
           </p>
           <p>
             <span className="mt-2 block font-bold">Place of Birth</span>
-            {place_of_birth}
+            {place_of_birth ? place_of_birth : "—"}
           </p>
         </div>
       </section>

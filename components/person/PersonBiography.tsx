@@ -18,19 +18,23 @@ const PersonBiography = async ({ id }: PersonBiographyProps) => {
         <h2 className="font-bold">Biography</h2>
         <div className="relative max-h-60 overflow-hidden">
           {biography
-            .split("\n")
-            .filter((t) => t)
-            .map((text, i) => (
-              <p key={i} className="mt-6 text-sm">
-                {text}
-              </p>
-            ))}
-          <button
-            type="button"
-            className="ransition-colors absolute bottom-3 right-3 rounded-md text-blue-700 hover:text-blue-500"
-          >
-            Read More
-          </button>
+            ? biography
+                .split("\n")
+                .filter((t) => t)
+                .map((text, i) => (
+                  <p key={i} className="mt-6 text-sm">
+                    {text}
+                  </p>
+                ))
+            : "—"}
+          {biography && (
+            <button
+              type="button"
+              className="ransition-colors absolute bottom-3 right-3 rounded-md text-blue-700 hover:text-blue-500"
+            >
+              Read More
+            </button>
+          )}
         </div>
       </div>
       <div className="mt-8 w-full">
