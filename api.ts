@@ -2,7 +2,7 @@ import {
   Movie,
   MovieCastResult,
   MovieCrewResult,
-  MovieImages,
+  TitleImages,
   MovieSearchResult,
   Person,
   TVCastResult,
@@ -37,9 +37,9 @@ export const getMovieList = async (
   return results;
 };
 
-export const getMovieImages = async (id: string, language = "") => {
-  const data = await getData<MovieImages>(
-    `https://api.themoviedb.org/3/movie/${id}/images?include_image_language=en,null`,
+export const getTitleImages = async (id: string, type: "movie" | "tv") => {
+  const data = await getData<TitleImages>(
+    `https://api.themoviedb.org/3/${type}/${id}/images?include_image_language=en,null`,
   );
 
   return data;

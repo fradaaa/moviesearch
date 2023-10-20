@@ -1,17 +1,17 @@
 "use client";
 
-import { MovieImages } from "@/types";
+import { TitleImages } from "@/types";
 import { getImageURL } from "@/utils/getImageURL";
 import Image from "next/image";
 import { CSSProperties, useState } from "react";
 
-type MovieImagesProps = {
-  images: MovieImages;
+type TitleImagesProps = {
+  images: TitleImages;
 };
 
-type ImagesType = keyof Omit<MovieImages, "id">;
+type ImagesType = keyof Omit<TitleImages, "id">;
 
-const MovieImages = ({ images }: MovieImagesProps) => {
+const TitleImages = ({ images }: TitleImagesProps) => {
   const [imagesType, setImagesType] = useState<ImagesType>("backdrops");
 
   return (
@@ -54,4 +54,4 @@ const spanSquare = (n: number, period = 13): CSSProperties => {
     : {};
 };
 
-export default MovieImages;
+export default TitleImages;

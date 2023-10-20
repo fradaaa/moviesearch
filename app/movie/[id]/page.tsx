@@ -1,7 +1,7 @@
-import { getMovie, getMovieImages } from "@/api";
-import MovieDetails from "@/components/movie/MovieDetails/MovieDetails";
-import Poster from "@/components/Poster/Poster";
-import TitleInfo from "@/components/TitleInfo/TitleInfo";
+import { getMovie, getTitleImages } from "@/api";
+import Poster from "@/components/title/Poster/Poster";
+import TitleDetails from "@/components/title/TitleDetails/TitleDetails";
+import TitleInfo from "@/components/title/TitleInfo/TitleInfo";
 import { formatDate } from "@/utils/formatDate";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -29,7 +29,7 @@ export default async function MoviePage({ params }: Props) {
   const { id } = params;
 
   const movie = await getMovie(id);
-  const images = await getMovieImages(id);
+  const images = await getTitleImages(id, "movie");
 
   const {
     credits: { cast },
@@ -41,7 +41,7 @@ export default async function MoviePage({ params }: Props) {
         <Poster item={movie} />
         <TitleInfo id={id} item={movie} />
       </div>
-      <MovieDetails images={images} cast={cast} />
+      <TitleDetails images={images} cast={cast} />
     </>
   );
 }

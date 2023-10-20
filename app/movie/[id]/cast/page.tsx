@@ -1,5 +1,5 @@
 import { getMovie } from "@/api";
-import PersonCard from "@/components/movie/PersonCard";
+import PersonCard from "@/components/title/PersonCard";
 import { CrewCredit } from "@/types";
 import { formatDate } from "@/utils/formatDate";
 import { getImageURL } from "@/utils/getImageURL";

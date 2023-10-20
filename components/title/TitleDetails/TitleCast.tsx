@@ -1,11 +1,11 @@
 import { CastCredit } from "@/types";
 import PersonCard from "../PersonCard";
 
-type MovieCastProps = {
+type TitleCastProps = {
   cast: CastCredit[];
 };
 
-const MovieCast = ({ cast }: MovieCastProps) => {
+const TitleCast = ({ cast }: TitleCastProps) => {
   return (
     <div>
       {/* <h3 className="font-bold">
@@ -24,4 +24,4 @@ const MovieCast = ({ cast }: MovieCastProps) => {
   );
 };
 
-export default MovieCast;
+export default TitleCast;

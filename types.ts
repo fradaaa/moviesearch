@@ -298,7 +298,7 @@ export type SearchData =
       items: PersonSearchResult[];
     };
 
-export type MovieImageType = {
+export type TitleImageType = {
   aspect_ratio: number;
   height: number;
   iso_639_1: string;
@@ -308,9 +308,9 @@ export type MovieImageType = {
   width: number;
 };
 
-export type MovieImages = {
+export type TitleImages = {
   id: number;
-  backdrops: MovieImageType[];
-  logos: MovieImageType[];
-  posters: MovieImageType[];
+  backdrops: TitleImageType[];
+  logos: TitleImageType[];
+  posters: TitleImageType[];
 };
