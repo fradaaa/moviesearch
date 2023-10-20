@@ -23,7 +23,7 @@ const PersonCreditItem = ({ item }: PersonCreditItemProps) => {
           <p className="font-bold">
             {isTv(item) ? item.name : item.title},{" "}
             <span className="font-montserrat text-base font-normal ">
-              {year}
+              {year ? year : "—"}
             </span>
           </p>
         </Link>
