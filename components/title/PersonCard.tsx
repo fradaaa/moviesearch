@@ -1,10 +1,12 @@
-import { CastCredit, CrewCredit } from "@/types";
+import { CastCredit, CrewCredit, TVCastCredit, TVCrewCredit } from "@/types";
 import { getImageURL } from "@/utils/getImageURL";
 import Image from "next/image";
 import Link from "next/link";
 
+type Person = CastCredit | CrewCredit | TVCastCredit | TVCrewCredit;
+
 type PersonCardProps = {
-  person: CastCredit | CrewCredit;
+  person: Person;
 };
 
 const PersonCard = ({ person }: PersonCardProps) => {
@@ -16,7 +18,7 @@ const PersonCard = ({ person }: PersonCardProps) => {
     <>
       <Link
         href={`/person/${id}`}
-        className="transition-opacity hover:opacity-70"
+        className="shrink-0 basis-[80px] transition-opacity hover:opacity-70"
       >
         {profile_path ? (
           <Image
@@ -49,15 +51,35 @@ const PersonCard = ({ person }: PersonCardProps) => {
         >
           <p className="text-2xl font-bold">{name}</p>
         </Link>
-        <p className="text-gray-400">
-          {isCrewMember(person) ? person.job : person.character}
-        </p>
+        <p className="text-gray-400">{getRoleOrJob(person)}</p>
       </div>
     </>
   );
 };
 
+const getRoleOrJob = (item: Person) => {
+  if (isTVCredit(item)) {
+    if (isTVCastCredit(item)) {
+      return item.roles.map(({ character }) => character).join(", ");
+    }
+
+    return item.jobs.map(({ job }) => job).join(", ");
+  } else {
+    if (isCrewMember(item)) {
+      return item.job;
+    }
+
+    return item.character;
+  }
+};
+
+const isTVCredit = (person: any): person is TVCastCredit | TVCrewCredit =>
+  person.roles !== undefined || person.jobs !== undefined;
+
 const isCrewMember = (person: any): person is CrewCredit =>
   person.department !== undefined;
+
+const isTVCastCredit = (person: any): person is TVCastCredit =>
+  person.roles !== undefined;
 
 export default PersonCard;

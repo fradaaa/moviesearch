@@ -2,12 +2,14 @@ import {
   Movie,
   MovieCastResult,
   MovieCrewResult,
-  TitleImages,
   MovieSearchResult,
   Person,
+  TVCastCredit,
   TVCastResult,
+  TVCrewCredit,
   TVCrewResult,
   TVSeries,
+  TitleImages,
 } from "./types";
 import { formatCredits } from "./utils/formatCredits";
 
@@ -22,10 +24,16 @@ const getData = async <T>(url: string) => {
   return data;
 };
 
-export const getMovie = async (movieId = "274") =>
-  getData<Movie>(
+export const getMovie = async (movieId = "274") => {
+  const data = await getData<Movie>(
     `https://api.themoviedb.org/3/movie/${movieId}?append_to_response=credits,videos`,
   );
+
+  data.credits.castLength = data.credits.cast.length;
+  data.credits.cast = data.credits.cast.slice(0, 20);
+
+  return data;
+};
 
 export const getMovieList = async (
   type: "popular" | "top_rated" | "upcoming",
@@ -72,10 +80,30 @@ export const getPersonCombinedCredits = async (id: string) => {
   return formatCredits(cast, crew);
 };
 
-export const getTV = async (id: string) => {
+export const getTV = async (id: string, includeAllCredits?: boolean) => {
   const data = await getData<TVSeries>(
     `https://api.themoviedb.org/3/tv/${id}?language=en-US&append_to_response=credits,videos`,
   );
+
+  if (includeAllCredits) {
+    const credits = await getTVCredits(id);
+    data.credits = credits;
+
+    return data;
+  }
+
+  return data;
+};
+
+export const getTVCredits = async (id: string) => {
+  const data = await getData<{
+    cast: TVCastCredit[];
+    crew: TVCrewCredit[];
+    castLength: number;
+  }>(`https://api.themoviedb.org/3/tv/${id}/aggregate_credits?language=en-US`);
+
+  data.castLength = data.cast.length;
+  data.cast = data.cast.slice(0, 20);
 
   return data;
 };

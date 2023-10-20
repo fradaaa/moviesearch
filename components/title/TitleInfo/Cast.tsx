@@ -6,26 +6,27 @@ import Link from "next/link";
 type CastProps = {
   cast: CastCredit[];
   id: string;
+  castLength: number;
 };
 
-const Cast = ({ cast, id }: CastProps) => {
+const Cast = ({ cast, id, castLength }: CastProps) => {
   const showCount = 7;
+
+  console.log(castLength);
 
   return (
     <div className="mt-6">
       <h2 className="font-bold uppercase">The Cast</h2>
       <div className="mt-2 flex gap-2">
-        {cast
-          .filter(({ order }) => order < showCount)
-          .map((item, i) => (
-            <CastItem
-              key={item.id}
-              item={item}
-              total={cast.length}
-              isLast={showCount - 1 === i}
-              movieId={id}
-            />
-          ))}
+        {[...cast.slice(0, 7)].map((item, i) => (
+          <CastItem
+            key={item.id}
+            item={item}
+            total={castLength}
+            isLast={showCount - 1 === i}
+            movieId={id}
+          />
+        ))}
       </div>
     </div>
   );

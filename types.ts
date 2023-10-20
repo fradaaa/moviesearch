@@ -103,6 +103,7 @@ export type Movie = {
   credits: {
     cast: CastCredit[];
     crew: CrewCredit[];
+    castLength: number;
   };
   videos: {
     results: VideoResult[];
@@ -178,6 +179,14 @@ type TVSeason = {
   vote_average: number;
 };
 
+export type TVCastCredit = CastCredit & {
+  roles: { credit_id: string; character: string; episode_count: number }[];
+};
+
+export type TVCrewCredit = CrewCredit & {
+  jobs: { credit_id: string; job: string; episode_count: number }[];
+};
+
 export type TVSeries = {
   adult: boolean;
   backdrop_path: string;
@@ -212,8 +221,9 @@ export type TVSeries = {
   vote_average: number;
   vote_count: number;
   credits: {
-    cast: CastCredit[];
-    crew: CrewCredit[];
+    cast: TVCastCredit[];
+    crew: TVCrewCredit[];
+    castLength: number;
   };
   videos: {
     results: VideoResult[];

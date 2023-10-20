@@ -41,7 +41,7 @@ export default async function MoviePage({ params }: Props) {
         <Poster item={movie} />
         <TitleInfo id={id} item={movie} />
       </div>
-      <TitleDetails images={images} cast={cast} />
+      <TitleDetails images={images} cast={cast} id={id} type="movie" />
     </>
   );
 }

@@ -1,6 +1,10 @@
 "use client";
 
-import { CastCredit, TitleImages as TitleImagesType } from "@/types";
+import {
+  CastCredit,
+  TVCastCredit,
+  TitleImages as TitleImagesType,
+} from "@/types";
 import { useState } from "react";
 import TitleCast from "./TitleCast";
 import TitleImages from "./TitleImages";
@@ -10,10 +14,12 @@ type TitleSectionType = "Cast" | "Images";
 
 type TitleDetailsProps = {
   images: TitleImagesType;
-  cast: CastCredit[];
+  cast: CastCredit[] | TVCastCredit[];
+  id: string;
+  type: "movie" | "tv";
 };
 
-const TitleDetails = ({ images, cast }: TitleDetailsProps) => {
+const TitleDetails = ({ images, cast, id, type }: TitleDetailsProps) => {
   const [selectedSection, setSelectedSection] =
     useState<TitleSectionType>("Cast");
 
@@ -25,7 +31,7 @@ const TitleDetails = ({ images, cast }: TitleDetailsProps) => {
       />
       <div className="mt-6">
         {selectedSection === "Cast" ? (
-          <TitleCast cast={cast} />
+          <TitleCast cast={cast} id={id} type={type} />
         ) : (
           <TitleImages images={images} />
         )}

@@ -16,7 +16,7 @@ const TitleInfo = ({ id, item }: TitleInfoProps) => {
     genres,
     vote_average,
     overview,
-    credits: { cast, crew },
+    credits: { cast, crew, castLength },
   } = item;
   const people = getDirectorAndWriter(crew);
 
@@ -51,7 +51,7 @@ const TitleInfo = ({ id, item }: TitleInfoProps) => {
         )}
       </div>
       {!isMovie(item) && <TVSeriesExtras item={item} />}
-      <Cast cast={cast} id={id} />
+      <Cast cast={cast} id={id} castLength={castLength} />
       <div className="mt-6">
         <h3 className="font-bold uppercase">Synopsis</h3>
         <p>{overview}</p>

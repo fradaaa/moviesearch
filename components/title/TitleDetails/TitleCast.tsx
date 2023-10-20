@@ -1,11 +1,14 @@
-import { CastCredit } from "@/types";
+import { CastCredit, TVCastCredit } from "@/types";
 import PersonCard from "../PersonCard";
+import Link from "next/link";
 
 type TitleCastProps = {
-  cast: CastCredit[];
+  cast: CastCredit[] | TVCastCredit[];
+  id: string;
+  type: "movie" | "tv";
 };
 
-const TitleCast = ({ cast }: TitleCastProps) => {
+const TitleCast = ({ cast, id, type }: TitleCastProps) => {
   return (
     <div>
       {/* <h3 className="font-bold">
@@ -20,6 +23,12 @@ const TitleCast = ({ cast }: TitleCastProps) => {
           );
         })}
       </ul>
+      <Link
+        href={`/${type}/${id}/cast`}
+        className="mt-6 block text-xl transition-colors hover:text-blue-700"
+      >
+        Full Cast & Crew
+      </Link>
     </div>
   );
 };
