@@ -1,7 +1,7 @@
 import { getMovie, getMovieImages } from "@/api";
 import MovieDetails from "@/components/movie/MovieDetails/MovieDetails";
-import MovieInfo from "@/components/movie/MovieInfo/MovieInfo";
 import Poster from "@/components/movie/Poster/Poster";
+import TitleInfo from "@/components/TitleInfo/TitleInfo";
 import { formatDate } from "@/utils/formatDate";
 import { Metadata, ResolvingMetadata } from "next";
 
@@ -39,7 +39,7 @@ export default async function MoviePage({ params }: Props) {
     <>
       <div className="flex">
         <Poster item={movie} />
-        <MovieInfo id={id} />
+        <TitleInfo id={id} item={movie} />
       </div>
       <MovieDetails images={images} cast={cast} />
     </>
