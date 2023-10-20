@@ -78,9 +78,20 @@ export const getPersonCredits = async (id: string) => {
     `https://api.themoviedb.org/3/person/${id}/combined_credits?language=en-US`,
   );
 
+  const seen: { [k: string]: true } = {};
+
   return data.cast
     .filter(
       ({ vote_count, vote_average }) => vote_count >= 2000 && vote_average >= 7,
+    )
+    .map((credit) => {
+      if (seen[credit.id]) return null;
+
+      seen[credit.id] = true;
+      return credit;
+    })
+    .filter(
+      (credit): credit is MovieSearchResult | TvSearchResult => credit !== null,
     )
     .sort((a, b) => b.vote_average - a.vote_average);
 };
