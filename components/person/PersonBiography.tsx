@@ -49,7 +49,7 @@ const PersonBiography = async ({ id }: PersonBiographyProps) => {
               : knownMovie.name;
 
             return (
-              <li key={id}>
+              <li key={id} className="w-[130px]">
                 <Link href={`/${media_type}/${id}`} className="block w-[130px]">
                   <Image
                     src={src}
@@ -59,10 +59,11 @@ const PersonBiography = async ({ id }: PersonBiographyProps) => {
                     className="rounded-md"
                   />
                 </Link>
-                <p className="text-center text-sm transition-colors hover:text-blue-700">
+                <p className="w-full whitespace-nowrap text-center text-sm transition-colors hover:text-blue-700">
                   <Link
                     href={`/${media_type}/${id}`}
-                    className="inline-block w-full"
+                    title={title}
+                    className="inline-block w-full overflow-hidden text-ellipsis"
                   >
                     {title}
                   </Link>
