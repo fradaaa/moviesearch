@@ -1,3 +1,4 @@
+import SideScroll from "@/components/SideScroll";
 import Header from "@/components/header/Header";
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className="bg-gray-950 text-white">
         <Header />
         <main className="mx-auto my-0 max-w-6xl p-4">{children}</main>
+        <SideScroll />
       </body>
     </html>
   );

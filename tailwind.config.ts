@@ -15,6 +15,15 @@ const config: Config = {
       width: {
         rating: "3ch",
       },
+      animation: {
+        rotate: "rotate .3s ease-in-out forwards",
+      },
+      keyframes: {
+        rotate: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(180deg)" },
+        },
+      },
     },
   },
   plugins: [],
