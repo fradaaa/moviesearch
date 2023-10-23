@@ -1,9 +1,9 @@
-import { CrewCredit, TVCastCredit, TVCrewCredit } from "@/types";
+import { CastCredit, CrewCredit } from "@/types";
 import PersonCard from "./PersonCard";
 
 type CastListProps = {
-  cast: TVCastCredit[];
-  crew: TVCrewCredit[];
+  cast: CastCredit[];
+  crew: CrewCredit[];
 };
 
 const CastList = ({ cast, crew }: CastListProps) => {
