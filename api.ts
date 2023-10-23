@@ -10,7 +10,6 @@ import {
   TVCrewResult,
   TVSeries,
   TitleImages,
-  TvSearchResult,
 } from "./types";
 import { formatCredits } from "./utils/formatCredits";
 
@@ -122,15 +121,13 @@ export const getTV = async (id: string, includeAllCredits?: boolean) => {
   return data;
 };
 
-export const getTVCredits = async (id: string) => {
+export const getTVCredits = async (id: string, stripCast?: boolean) => {
   const data = await getData<{
     cast: TVCastCredit[];
     crew: TVCrewCredit[];
-    castLength: number;
   }>(`https://api.themoviedb.org/3/tv/${id}/aggregate_credits?language=en-US`);
 
-  data.castLength = data.cast.length;
-  data.cast = data.cast.slice(0, 20);
+  if (stripCast) data.cast = data.cast.slice(0, 20);
 
-  return data;
+  return { ...data, castLength: data.cast.length };
 };

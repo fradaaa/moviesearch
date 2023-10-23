@@ -34,13 +34,11 @@ const CastList = ({ cast, crew }: CastListProps) => {
         {Object.entries(crewMembers).map(([dep, members]) => (
           <ul key={dep}>
             <h3 className="mt-6 font-bold">{dep}</h3>
-            {members.map((person) => {
-              return (
-                <li key={person.credit_id} className="mt-4 flex">
-                  <PersonCard person={person} />
-                </li>
-              );
-            })}
+            {members.map((person) => (
+              <li key={person.id} className="mt-4 flex">
+                <PersonCard person={person} />
+              </li>
+            ))}
           </ul>
         ))}
       </ul>
