@@ -1,5 +1,5 @@
-import { LuStar } from "react-icons/lu";
 import { CSSProperties } from "react";
+import { LuStar } from "react-icons/lu";
 
 type RatingProps = {
   vote_average: number;

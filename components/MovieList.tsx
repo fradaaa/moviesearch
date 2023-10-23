@@ -13,7 +13,7 @@ const MovieList = async ({ type }: MovieListProps) => {
   const movies = await getMovieList(type);
 
   return (
-    <div className="mt-10">
+    <section className="mt-10">
       <h2 className="text-3xl font-bold capitalize">
         {type === "top_rated" ? "Top Rated" : type}
       </h2>
@@ -55,7 +55,7 @@ const MovieList = async ({ type }: MovieListProps) => {
           },
         )}
       </ul>
-    </div>
+    </section>
   );
 };
 

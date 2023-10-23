@@ -16,7 +16,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const id = params.id;
 
-  const { title, release_date } = await getMovie(id, true);
+  const { title, release_date } = await getMovie(id);
 
   const { year } = formatDate(release_date);
 
@@ -28,7 +28,7 @@ export async function generateMetadata(
 export default async function MoviePage({ params }: Props) {
   const { id } = params;
 
-  const movie = await getMovie(id, true);
+  const movie = await getMovie(id);
   const images = await getTitleImages(id, "movie");
 
   const {
@@ -39,9 +39,9 @@ export default async function MoviePage({ params }: Props) {
     <>
       <div className="flex">
         <Poster item={movie} />
-        <TitleInfo id={id} item={movie} />
+        <TitleDetails id={id} item={movie} type="movie" />
       </div>
-      <TitleDetails images={images} cast={cast} id={id} type="movie" />
+      <TitleInfo images={images} cast={cast} id={id} type="movie" />
     </>
   );
 }

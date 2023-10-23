@@ -21,11 +21,12 @@ const PlayerModal = ({ videos, movieInfo }: PlayerModalProps) => {
     vote_average,
     vote_count,
   } = movieInfo;
+
   const [curVideo, setCurVideo] = useState("");
 
-  const src = getImageURL.getPoster(poster_path, "w185");
   const [_, textColor] = getRatingColor(vote_average);
   const { year } = formatDate(release_date);
+  const src = getImageURL.getPoster(poster_path, "w185");
 
   const trailer = videos.find(({ type }) => type === "Trailer");
 

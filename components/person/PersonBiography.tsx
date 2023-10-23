@@ -1,4 +1,4 @@
-import { getPerson, getPersonCredits } from "@/api";
+import { getPerson, getPersonTopCredits } from "@/api";
 import { getImageURL } from "@/utils/getImageURL";
 import { isMovieSearchResult } from "@/utils/typeHelpers";
 import Image from "next/image";
@@ -10,7 +10,7 @@ type PersonBiographyProps = {
 
 const PersonBiography = async ({ id }: PersonBiographyProps) => {
   const { name, biography } = await getPerson(id);
-  const knownForMovies = await getPersonCredits(id);
+  const knownForMovies = await getPersonTopCredits(id);
 
   return (
     <section className="w-full">

@@ -3,6 +3,7 @@ import { getImageURL } from "@/utils/getImageURL";
 import Image from "next/image";
 import PlayTrailer from "./PlayTrailer";
 import ReleaseDate from "./ReleaseDate";
+import { isMovie } from "@/utils/typeHelpers";
 
 type PosterProps = {
   item: Movie | TVSeries;
@@ -16,18 +17,19 @@ const Poster = ({ item }: PosterProps) => {
     vote_count,
     videos: { results },
   } = item;
-  const src = getImageURL.getPoster(poster_path, "original");
+
   const movieInfo: MovieInfo = {
-    poster_path,
     release_date: isMovie(item) ? item.release_date : item.first_air_date,
     title: isMovie(item) ? item.title : item.name,
     original_title: isMovie(item) ? item.original_title : item.original_name,
+    poster_path,
     genres,
     vote_average,
     vote_count,
   };
-
   const { title, release_date } = movieInfo;
+
+  const src = getImageURL.getPoster(poster_path, "original");
 
   return (
     <div className="relative basis-2/5 rounded-sm border-8 border-sky-800">
@@ -37,7 +39,5 @@ const Poster = ({ item }: PosterProps) => {
     </div>
   );
 };
-
-const isMovie = (item: any): item is Movie => item.title !== undefined;
 
 export default Poster;

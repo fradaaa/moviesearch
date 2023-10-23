@@ -1,21 +1,20 @@
-import { CastCredit, TVCastCredit } from "@/types";
-import PersonCard from "../PersonCard";
+import { CastCredit } from "@/types";
 import Link from "next/link";
+import PersonCard from "../PersonCard";
 
 type TitleCastProps = {
-  cast: CastCredit[] | TVCastCredit[];
+  cast: CastCredit[];
   id: string;
   type: "movie" | "tv";
 };
 
 const TitleCast = ({ cast, id, type }: TitleCastProps) => {
+  const titleCast = cast.slice(0, 20);
+
   return (
     <div>
-      {/* <h3 className="font-bold">
-        Cast <span className="text-gray-400">{cast.length}</span>
-      </h3> */}
       <ul className="mt-4 grid grid-cols-2">
-        {cast.map((person) => {
+        {titleCast.map((person) => {
           return (
             <li key={person.id} className="mt-4 flex">
               <PersonCard person={person} />

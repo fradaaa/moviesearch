@@ -34,7 +34,7 @@ const PersonCreditItem = ({ item }: PersonCreditItemProps) => {
             ) : (
               item.roles.map((item) => (
                 <p key={item.credit_id} className="mt-1 text-gray-200">
-                  {item.character}
+                  {item.character || "-"}
                   <span className="text-sm text-gray-400">
                     , {item.episode_count} episode(s)
                   </span>

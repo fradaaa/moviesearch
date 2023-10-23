@@ -14,6 +14,8 @@ type ImagesType = keyof Omit<TitleImages, "id">;
 const TitleImages = ({ images }: TitleImagesProps) => {
   const [imagesType, setImagesType] = useState<ImagesType>("backdrops");
 
+  console.log(images);
+
   return (
     <>
       <div className="flex gap-6">
@@ -31,7 +33,7 @@ const TitleImages = ({ images }: TitleImagesProps) => {
       <div className="mt-6 grid grid-cols-5 gap-4">
         {images[imagesType].map(({ file_path, width, height }, i) => (
           <Image
-            key={file_path + i}
+            key={i}
             className="h-full rounded-md"
             src={getImageURL.getBackdrop(file_path, "w780")}
             alt="Image"

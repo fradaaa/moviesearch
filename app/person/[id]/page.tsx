@@ -1,4 +1,4 @@
-import { getPerson, getPersonCombinedCredits } from "@/api";
+import { getPerson, getPersonCredits } from "@/api";
 import PersonBiography from "@/components/person/PersonBiography";
 import PersonCredits from "@/components/person/PersonCredits";
 import PersonalInfo from "@/components/person/PersonalInfo";
@@ -26,7 +26,7 @@ export default async function PersonPage({ params }: Props) {
   const { id } = params;
 
   const { known_for_department } = await getPerson(id);
-  const credits = await getPersonCombinedCredits(id);
+  const credits = await getPersonCredits(id);
 
   return (
     <div className="flex gap-8">

@@ -46,7 +46,7 @@ const CastList = ({ cast, crew }: CastListProps) => {
   );
 };
 
-export const formatCrewMembers = (crew: CrewCredit[]) => {
+const formatCrewMembers = (crew: CrewCredit[]) => {
   const deps: {
     [department: string]: CrewCredit[];
   } = {};

@@ -10,9 +10,9 @@ import {
 type Cast = MovieCastResult | TVCastResult;
 type Crew = MovieCrewResult | TVCrewResult;
 
-type FormatCredits = (cast: Cast[], crew: Crew[]) => PersonCredits;
+type FormatPersonCredits = (cast: Cast[], crew: Crew[]) => PersonCredits;
 
-export const formatCredits: FormatCredits = (cast, crew) => {
+export const formatPersonCredits: FormatPersonCredits = (cast, crew) => {
   const data: PersonCredits = { Acting: formatCast(cast) };
 
   const sortFunction = (a: Cast | Crew, b: Cast | Crew) =>

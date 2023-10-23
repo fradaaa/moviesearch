@@ -1,4 +1,4 @@
-import { getTV } from "@/api";
+import { getTV, getTVCredits } from "@/api";
 import CastList from "@/components/title/CastList";
 import TitleGoBackHeader from "@/components/title/TitleGoBackHeader";
 import { formatDate } from "@/utils/formatDate";
@@ -27,12 +27,8 @@ export async function generateMetadata(
 export default async function TVCastPage({ params }: Props) {
   const { id } = params;
 
-  const {
-    credits: { cast, crew },
-    name,
-    poster_path,
-    first_air_date,
-  } = await getTV(id, true);
+  const { name, poster_path, first_air_date } = await getTV(id);
+  const { cast, crew } = await getTVCredits(id);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { getTV, getTitleImages } from "@/api";
+import { getTV, getTVCredits, getTitleImages } from "@/api";
 import Poster from "@/components/title/Poster/Poster";
 import TitleDetails from "@/components/title/TitleDetails/TitleDetails";
 import TitleInfo from "@/components/title/TitleInfo/TitleInfo";
@@ -27,20 +27,19 @@ export async function generateMetadata(
 export default async function TVPage({ params }: Props) {
   const { id } = params;
 
-  const tv = await getTV(id, true);
+  const tv = await getTV(id);
   const images = await getTitleImages(id, "tv");
+  const { cast } = await getTVCredits(id);
 
-  const {
-    credits: { cast },
-  } = tv;
+  tv.credits.cast = cast;
 
   return (
     <>
       <div className="flex">
         <Poster item={tv} />
-        <TitleInfo id={id} item={tv} />
+        <TitleDetails id={id} item={tv} type="tv" />
       </div>
-      <TitleDetails images={images} cast={cast} id={id} type="tv" />
+      <TitleInfo images={images} cast={cast} id={id} type="tv" />
     </>
   );
 }
